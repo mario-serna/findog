@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Nuevo Reporte</h1>
+<div mat-dialog-content>
+    <p>Nombre de la mascota:</p>
+    <img *ngIf="image" src="{{image}}" alt="">
+    <button *ngIf="!image" mat-button style="width: 100%;height: 150px;border: solid 1px #000;">+</button>
+
+    <input style="display: none;" type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="data.animal">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field>
+        <mat-label>Tamaño</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let size of sizes" [value]="size.value">
+                {{size.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: flex-end;">
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]=" data.animal" cdkFocusInitial>Crear</button>
+</div>
